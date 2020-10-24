@@ -20,11 +20,9 @@ in
   boot.loader.grub.useOSProber = true;
 
   nix = {
-    autoOptimiseStore = true;
-    nixPath = [
-      "nixkpgs=/nix/var/nix/profiles/per-user/root/channels/nixos"
+     nixPath =[
+      "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos/nixpkgs"
       "nixos-config=/home/fahmiirsyadk/.nix-config/machines/mylaptop/configuration.nix"
-      "/nix/var/profiles/per-user/root/channels"
     ];
   };
 
@@ -68,20 +66,14 @@ in
   # $ nix search wget
   environment.systemPackages = (with pkgs; [
     wget
-    vim
     git
-    htop
     zip
     unzip
     curl
     upower
-    kitty
-    neofetch
-    pfetch
     pciutils
     # Intel
     mesa
-    tty-clock
     glxinfo
     vaapiIntel
     libva-utils
@@ -95,33 +87,19 @@ in
     cabal-install
     ghc
     # xmonad stuff
-    dmenu
-    scrot
-    feh
-    xdotool
-    picom
     xscreensaver
     xorg.xbacklight
-    xclip
     # emacs
-    emacs
     ripgrep
     fd
     # GUI
-    deepin.deepin-screenshot
-    chromium
-    firefox
     pavucontrol
-    xfce.thunar
     home-manager
-    tdesktop
-    unstable.zoom-us
   ]) ++ (with pkgs.haskellPackages; [
     xmonad
     xmonad-contrib
     xmobar
     hlint
-    brittany
     xmonad-extras
     apply-refact
   ]) ++ (with pkgs.php73Packages; [
@@ -173,7 +151,7 @@ in
       enable = true;
       adminAddr = "fahmiirsyadk";
       virtualHosts = {
-        "fah.mi" = {
+        "localhost" = {
           documentRoot = "/var/www/html";
           adminAddr = "fahmiirsyad10@gmail.com";
           extraConfig = ''
@@ -226,10 +204,6 @@ in
 
   # services.xserver.xkbOptions = "eurosign:e";
 
-  # Enable the KDE Desktop Environment.
-  # services.xserver.displayManager.sddm.enable = true;
-  # services.xserver.desktopManager.plasma5.enable = true;
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.fahmiirsyadk = {
     isNormalUser = true;
@@ -238,6 +212,12 @@ in
     createHome = true;
     uid = 1000;
     extraGroups = [ "wheel" "audio" "video" "disk" "networkmanager" "fahmiirsyadk" ]; # Enable ‘sudo’ for the user.
+  };
+
+  home-manager = {
+    useUserPackages = true;
+    verbose = true;
+    users.fahmiirsyadk = (import ../../modules/home.nix);
   };
 
   # home sweet home
