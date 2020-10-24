@@ -19,6 +19,15 @@ in
   boot.loader.efi.canTouchEfiVariables = false;
   boot.loader.grub.useOSProber = true;
 
+  nix = {
+    autoOptimiseStore = true;
+    nixPath = [
+      "nixkpgs=/nix/var/nix/profiles/per-user/root/channels/nixos"
+      "nixos-config=/home/fahmiirsyadk/.nix-config/machines/mylaptop/configuration.nix"
+      "/nix/var/profiles/per-user/root/channels"
+    ];
+  };
+
   # UNFREE PKGS
   nixpkgs.config.allowUnfree = true;
 
@@ -72,6 +81,7 @@ in
     pciutils
     # Intel
     mesa
+    tty-clock
     glxinfo
     vaapiIntel
     libva-utils
@@ -114,6 +124,8 @@ in
     brittany
     xmonad-extras
     apply-refact
+  ]) ++ (with pkgs.php73Packages; [
+    psalm
   ]);
 
 
@@ -143,7 +155,7 @@ in
   # Enable sound.
   sound.enable = true;
   hardware = {
-    pulseaudio = (import ./pulseaudio.nix) { inherit pkgs; };
+    pulseaudio = (import ../../modules/hardware/pulseaudio.nix) { inherit pkgs; };
     opengl.enable = true;
     opengl.driSupport = true;
     opengl.extraPackages = with pkgs; [
@@ -237,5 +249,3 @@ in
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "20.03"; # Did you read the comment?
 }
-  
-
