@@ -38,19 +38,6 @@ in
     };
   };
 
-
-  # networking.hostName = "nixos"; # Define your hostname.
-  # networking.networkmanager.enable = true;    
-  #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # The global useDHCP flag is deprecated, therefore explicitly set to false here.
-  # Per-interface useDHCP will be mandatory in the future, so this generated config
-  # replicates the default behaviour.
-  # networking.useDHCP = false;
-  # networking.interfaces.enp7s0.useDHCP = true;
-  # networking.interfaces.
-
-
   # SSD
   fileSystems."/".options = [ "noatime" "nodiratime" "discard" ];
 
@@ -111,10 +98,14 @@ in
     ripgrep
     fd
     # GUI
+    deepin.deepin-screenshot
     chromium
     firefox
     pavucontrol
     xfce.thunar
+    home-manager
+    tdesktop
+    unstable.zoom-us
   ]) ++ (with pkgs.haskellPackages; [
     xmonad
     xmonad-contrib
@@ -165,7 +156,6 @@ in
     cpu.intel.updateMicrocode = true;
   };
 
-
   services = {
     httpd = {
       enable = true;
@@ -185,17 +175,11 @@ in
           listen = [{ port = 2345; }];
         };
       };
-      #};
-      #};
-      #virtualHosts = {
-      #localhost = {
-      # documentRoot = "/home/fahmiirsyadk/.nix-profile/htdocs";
-      #};
-      #};
+
       enablePHP = true;
       phpOptions = ''
         date.timezone = Asia/Jakarta
-        display_error = On
+        display_errors = on
         extension=gd
         extension=imap
         extension=mysqli
@@ -203,6 +187,7 @@ in
         extension=bz2
       '';
     };
+
     mysql.enable = true;
     mysql.package = unstable.mariadb;
 
@@ -244,23 +229,6 @@ in
   };
 
   # home sweet home
-  home-manager.users.fahmiirsyadk = { pkgs, ... }: {
-    home.packages = [
-      pkgs.atool
-      pkgs.httpie
-      unstable.discord
-      unstable.android-studio
-      pkgs.gotop
-      unstable.nix-prefetch-github
-      # PHP
-      unstable.mariadb
-      unstable.apacheHttpd
-      unstable.php
-    ];
-    programs.bash.enable = true;
-
-  };
-
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
