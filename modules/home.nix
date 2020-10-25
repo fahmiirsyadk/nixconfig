@@ -18,7 +18,6 @@ in
     scrot
     feh
     xdotool
-    picom
     vim
     neofetch
     pfetch
@@ -36,5 +35,11 @@ in
     home-manager.enable = true;
     bash.enable = true;
     kitty = (import terminal/kitty/kitty.nix);
+  };
+  xsession.windowManager = {
+    xmonad = (import desktop/xmonad/xmonad.nix);
+  };
+  services = {
+    picom = (import desktop/picom/picom.nix) { inherit unstable; };
   };
 }

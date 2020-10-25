@@ -21,7 +21,7 @@ in
 
   nix = {
     nixPath = [
-      "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos/nixpkgs"
+      "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos"
       "nixos-config=/home/fahmiirsyadk/.nix-config/machines/mylaptop/configuration.nix"
     ];
   };
@@ -153,7 +153,12 @@ in
         enable = true;
         naturalScrolling = true;
       };
+      displayManager.lightdm = {
+        enable = true;
+
+      };
       displayManager.defaultSession = "none+xmonad";
+
       windowManager.xmonad = {
         enable = true;
         enableContribAndExtras = true;
