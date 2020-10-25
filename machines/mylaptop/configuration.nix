@@ -20,7 +20,7 @@ in
   boot.loader.grub.useOSProber = true;
 
   nix = {
-     nixPath =[
+    nixPath = [
       "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos/nixpkgs"
       "nixos-config=/home/fahmiirsyadk/.nix-config/machines/mylaptop/configuration.nix"
     ];
@@ -95,13 +95,6 @@ in
     # GUI
     pavucontrol
     home-manager
-  ]) ++ (with pkgs.haskellPackages; [
-    xmonad
-    xmonad-contrib
-    xmobar
-    hlint
-    xmonad-extras
-    apply-refact
   ]) ++ (with pkgs.php73Packages; [
     psalm
   ]);
@@ -147,44 +140,15 @@ in
   };
 
   services = {
-    httpd = {
+    httpd = (import ../../modules/services/httpd.nix);
+    mysql = {
       enable = true;
-      adminAddr = "fahmiirsyadk";
-      virtualHosts = {
-        "localhost" = {
-          documentRoot = "/var/www/html";
-          adminAddr = "fahmiirsyad10@gmail.com";
-          extraConfig = ''
-            <Directory "/var/www/html">
-               Options Indexes FollowSymLinks
-               AllowOverride None
-               Allow from all
-               Require all granted
-            </Directory>
-          '';
-          listen = [{ port = 2345; }];
-        };
-      };
-
-      enablePHP = true;
-      phpOptions = ''
-        date.timezone = Asia/Jakarta
-        display_errors = on
-        extension=gd
-        extension=imap
-        extension=mysqli
-        extension=pdo_mysql
-        extension=bz2
-      '';
+      package = unstable.mariadb;
     };
-
-    mysql.enable = true;
-    mysql.package = unstable.mariadb;
 
     xserver = {
       enable = true;
       layout = "us";
-      # videoDrivers = ["intel"];
       libinput = {
         enable = true;
         naturalScrolling = true;
@@ -200,6 +164,9 @@ in
   # PROGRAMS
   programs = {
     adb.enable = true; # recently, it's use for android studio stuff
+    bash = {
+      shellInit = "NIXOS_CONFIG=$HOME/.nix-config/machines/mylaptop/configuration.nix:$NIX_CONFIG";
+    };
   };
 
   # services.xserver.xkbOptions = "eurosign:e";
