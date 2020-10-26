@@ -21,6 +21,7 @@ in
     vim
     neofetch
     pfetch
+    picom
     emacs
     xfce.thunar
   ]) ++ (with pkgs.haskellPackages; [
@@ -40,6 +41,6 @@ in
     xmonad = (import desktop/xmonad/xmonad.nix);
   };
   services = {
-    picom = (import desktop/picom/picom.nix) { inherit unstable; };
+    picom = (import desktop/picom/picom.nix);
   };
 }

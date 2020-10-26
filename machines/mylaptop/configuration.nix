@@ -169,13 +169,13 @@ in
   # PROGRAMS
   programs = {
     adb.enable = true; # recently, it's use for android studio stuff
-    bash = {
-      shellInit = "NIXOS_CONFIG=$HOME/.nix-config/machines/mylaptop/configuration.nix:$NIX_CONFIG";
-    };
   };
 
-  # services.xserver.xkbOptions = "eurosign:e";
-
+  environment.sessionVariables = {
+    NIXOS_CONFIG="/home/fahmiirsyadk/.nix-config/machines/mylaptop/configuration.nix";
+    _JAVA_AWT_WM_NONREPARENTING="1";
+  };
+  
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.fahmiirsyadk = {
     isNormalUser = true;

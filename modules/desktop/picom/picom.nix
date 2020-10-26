@@ -1,8 +1,5 @@
-{ unstable }:
-# let unstable = import <nixkpgs-unstable> { }; in
 {
   enable = true;
-  package = unstable.picom;
   backend = "glx";
   blur = true;
   experimentalBackends = true;
@@ -13,6 +10,15 @@
   refreshRate = 144;
   extraOptions =
     ''
+      frame-opacity = 1;
+      blur-background = true;
+      blur-kern = "7x7box";
+      blur-background-exclude = [];
+        blur =
+          { method = "gaussian";
+            size = 10;
+            deviation = 5.0;
+          };
       use-damage = true
       log-level = warn
       detect-transient = true
