@@ -40,7 +40,7 @@ in
   xsession.windowManager = {
     xmonad = (import desktop/xmonad/xmonad.nix);
   };
-  services = {
+  /* services = {
     picom = (import desktop/picom/picom.nix);
-  };
+  }; */
 }

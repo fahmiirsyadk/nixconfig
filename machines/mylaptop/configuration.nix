@@ -72,16 +72,6 @@ in
     curl
     upower
     pciutils
-    # Intel
-    mesa
-    glxinfo
-    vaapiIntel
-    libva-utils
-    libva-full
-    vaapi-intel-hybrid
-    xorg.xorgserver
-    xorg.xf86inputlibinput
-    xorg.xf86videointel
     # haskell stuff
     cabal2nix
     cabal-install

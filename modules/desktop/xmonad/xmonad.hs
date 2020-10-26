@@ -105,7 +105,7 @@ windowCount :: X (Maybe String)
 windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
 
 myStartupHook :: X ()
-myStartupHook = def ()
+myStartupHook = do
         {-
                 if you want to execute something you can
                 change `def ()` to do
@@ -114,8 +114,8 @@ myStartupHook = def ()
                         spawnOnce "something <3"
         -}
           -- spawnOnce "nitrogen --restore &"
-          -- spawnOnce "picom &"
-          -- spawnOnce "pulseaudio --start"
+          spawnOnce "picom &"
+          spawnOnce "pulseaudio --start"
           -- spawnOnce "nm-applet &"
           -- spawnOnce "volumeicon &"
           -- spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x292d3e --height 22 &"
