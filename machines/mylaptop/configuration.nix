@@ -72,6 +72,7 @@ in
     curl
     upower
     pciutils
+    # nodejs
     # haskell stuff
     cabal2nix
     cabal-install
@@ -87,6 +88,8 @@ in
     home-manager
   ]) ++ (with pkgs.php73Packages; [
     psalm
+  ]) ++ (with unstable; [
+    nodejs
   ]);
 
 
