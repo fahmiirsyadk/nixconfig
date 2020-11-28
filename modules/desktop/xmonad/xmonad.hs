@@ -106,19 +106,16 @@ windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace
 
 myStartupHook :: X ()
 myStartupHook = do
-        {-
-                if you want to execute something you can
-                change `def ()` to do
-
-                myStartupHook = do
-                        spawnOnce "something <3"
-        -}
+        spawnOnce "pulseaudio --start"
+        spawnOnce "xsetroot -cursor_name left_ptr"
           -- spawnOnce "nitrogen --restore &"
-          spawnOnce "picom &"
-          spawnOnce "pulseaudio --start"
+          -- spawnOnce "picom &"
           -- spawnOnce "nm-applet &"
           -- spawnOnce "volumeicon &"
           -- spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x292d3e --height 22 &"
+          -- spawnOnce "/usr/bin/emacs --daemon &"
+          -- spawnOnce "kak -d -s mysession &"
+          -- setWMName "xmonad"
 
 myColorizer :: Window -> Bool -> X (String, String)
 myColorizer = colorRangeFromClassName
@@ -149,10 +146,10 @@ spawnSelected' lst = gridselect conf lst >>= flip whenJust spawn
                    , gs_originFractY = 0.5
                    , gs_font         = myFont
                    }
-
+myAppGrid :: [(String, String)]
 myAppGrid = [ ("Youtube Music", "/usr/lib/chromium/chromium --memory-model=low --profile-directory=Default --app-id=cinhimbnkkaeohfgghhklpknlkffjgod")
-                 , ("Chrome", "chromium --memory-model=low --enable-smooth-scrolling --enable-print-preview")
-                 , ("Google Drive", "/usr/lib/chromium/chromium --memory-model=low --profile-directory=Default --app-id=aghbiahbpaijignceidepookljebhfak")
+                 , ("HighPerf Kitty", "prime-run kitty")
+                 , ("Chrome", "chromium --memory-model=low --enable-smooth-scrolling --enable-sync-extensions --enable-webgl --enable-print-preview")
                  ]
 
 myScratchPads :: [NamedScratchpad]
@@ -204,6 +201,9 @@ grid     = renamed [Replace "grid"]
            $ mySpacing 8
            $ mkToggle (single MIRROR)
            $ Grid (16/10)
+spirals  = renamed [Replace "spirals"]
+           $ mySpacing' 8
+           $ spiral (6/7)
 threeCol = renamed [Replace "threeCol"]
            $ limitWindows 7
            $ mySpacing' 4
@@ -249,6 +249,7 @@ myLayoutHook = avoidStruts $ mouseResize $ windowArrange $ T.toggleLayouts float
                                  -- ||| floats
                                  ||| grid
                                  ||| noBorders tabs
+                                 -- ||| spirals
                                  ||| threeCol
                                  ||| threeRow
 
@@ -301,7 +302,6 @@ myKeys =
         , ("M-<Return>", spawn myTerminal)
 
     -- Run Prompt
-    -- , ("M-S-<Return>", shellPrompt dtxpconfig)   -- Shell Prompt
         , ("M-S-<Return>", spawn "dmenu_run")
        
     -- Windows
@@ -383,7 +383,7 @@ myKeys =
 main :: IO ()
 main = do
     -- Launching three instances of xmobar on their monitors.
-    xmproc0 <- spawnPipe "xmobar -x 0 ~/.nix-config/modules/desktop/xmobar/xmobarrc0"
+    xmproc0 <- spawnPipe "xmobar -x 0 /home/fahmiirsyadk/.config/xmobar/xmobarrc0"
     -- the xmonad, ya know...what the WM is named after!
     xmonad $ ewmh def
         { manageHook = ( isFullscreen --> doFullFloat ) <+> myManageHook <+> manageDocks
