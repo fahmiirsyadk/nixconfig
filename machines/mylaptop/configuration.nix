@@ -4,7 +4,7 @@
 
 { config, pkgs, ... }:
 let
-  unstable = import <nixpkgs-unstable> { };
+  unstable = import <nixpkgs-unstable> { config.allowUnfree = true; };
 in
 {
   imports =
@@ -28,6 +28,7 @@ in
 
   # UNFREE PKGS
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.pulseaudio = true;
 
   # BOOT FASTER
   systemd.services = {
@@ -86,8 +87,11 @@ in
     # GUI
     pavucontrol
     home-manager
-  ]) ++ (with pkgs.php73Packages; [
-    psalm
+    php
+    php74Packages.composer2
+  ]) ++ (with pkgs.php74Extensions; [
+    bcmath ctype fileinfo json
+    mbstring openssl pdo tokenizer xml
   ]) ++ (with unstable; [
     nodejs
   ]);
@@ -144,7 +148,6 @@ in
       layout = "us";
       libinput = {
         enable = true;
-        naturalScrolling = true;
       };
       displayManager.lightdm = {
         enable = true;
@@ -176,7 +179,7 @@ in
     home = "/home/fahmiirsyadk";
     createHome = true;
     uid = 1000;
-    extraGroups = [ "wheel" "audio" "video" "disk" "networkmanager" "fahmiirsyadk" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "audio" "video" "disk" "networkmanager" "sudo" ]; # Enable ‘sudo’ for the user.
   };
 
   home-manager = {
@@ -192,5 +195,5 @@ in
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "20.03"; # Did you read the comment?
+  system.stateVersion = "20.09"; # Did you read the comment?
 }

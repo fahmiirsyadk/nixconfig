@@ -106,7 +106,7 @@ windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace
 
 myStartupHook :: X ()
 myStartupHook = do
-        spawnOnce "pulseaudio --start"
+        spawnOnce "pulseaudio -k && pulseaudio --start"
         spawnOnce "xsetroot -cursor_name left_ptr"
           -- spawnOnce "nitrogen --restore &"
           -- spawnOnce "picom &"
@@ -148,7 +148,6 @@ spawnSelected' lst = gridselect conf lst >>= flip whenJust spawn
                    }
 myAppGrid :: [(String, String)]
 myAppGrid = [ ("Youtube Music", "/usr/lib/chromium/chromium --memory-model=low --profile-directory=Default --app-id=cinhimbnkkaeohfgghhklpknlkffjgod")
-                 , ("HighPerf Kitty", "prime-run kitty")
                  , ("Chrome", "chromium --memory-model=low --enable-smooth-scrolling --enable-sync-extensions --enable-webgl --enable-print-preview")
                  ]
 

@@ -1,5 +1,5 @@
 { config, lib, pkgs, ... }:
-let unstable = import <nixpkgs-unstable> { };
+let unstable = import <nixpkgs-unstable> { config.allowUnfree = true; };
 in
 {
   home.packages = (with pkgs; [
@@ -24,6 +24,7 @@ in
     picom
     emacs
     xfce.thunar
+    vscode
   ]) ++ (with pkgs.haskellPackages; [
     xmonad
     xmonad-contrib
@@ -36,6 +37,12 @@ in
     home-manager.enable = true;
     bash.enable = true;
     kitty = (import terminal/kitty/kitty.nix);
+    git = {
+      enable = true;
+      userName = "fahmiirsyadk";
+      userEmail = "fahmiirsyad10@gmail.com";
+      delta.enable = true;
+    };
   };
   xsession.windowManager = {
     xmonad = (import desktop/xmonad/xmonad.nix);
