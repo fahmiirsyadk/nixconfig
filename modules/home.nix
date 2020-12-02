@@ -25,6 +25,7 @@ in
     emacs
     xfce.thunar
     vscode
+    pfetch
   ]) ++ (with pkgs.haskellPackages; [
     xmonad
     xmonad-contrib
@@ -43,11 +44,9 @@ in
       userEmail = "fahmiirsyad10@gmail.com";
       delta.enable = true;
     };
+    feh.enable = true;
   };
   xsession.windowManager = {
     xmonad = (import desktop/xmonad/xmonad.nix);
   };
-  /* services = {
-    picom = (import desktop/picom/picom.nix);
-  }; */
 }

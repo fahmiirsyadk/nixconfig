@@ -18,7 +18,7 @@ in
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = false;
   boot.loader.grub.useOSProber = true;
-
+  
   nix = {
     nixPath = [
       "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos"
@@ -127,13 +127,14 @@ in
     opengl.enable = true;
     opengl.driSupport = true;
     opengl.extraPackages = with pkgs; [
-      vaapiIntel
-      vaapiVdpau
-      libvdpau-va-gl
-      intel-media-driver
+      # vaapiIntel
+      # vaapiVdpau
+      # libvdpau-va-gl
+      # intel-media-driver
+      intel-compute-runtime
     ];
     opengl.driSupport32Bit = true;
-    cpu.intel.updateMicrocode = true;
+    # cpu.intel.updateMicrocode = true;
   };
 
   services = {
@@ -151,7 +152,6 @@ in
       };
       displayManager.lightdm = {
         enable = true;
-
       };
       displayManager.defaultSession = "none+xmonad";
 
