@@ -96,7 +96,14 @@ in
     nodejs
   ]);
 
-
+  fonts.fonts = (with pkgs; [
+    fira-code
+    mononoki
+    nerdfonts
+    fira-code-symbols
+    ubuntu_font_family
+  ]);
+  
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;

@@ -106,16 +106,8 @@ windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace
 
 myStartupHook :: X ()
 myStartupHook = do
-        -- spawnOnce "pulseaudio -k && pulseaudio --start"
         spawnOnce "xsetroot -cursor_name left_ptr"
-          -- spawnOnce "nitrogen --restore &"
-          -- spawnOnce "picom &"
-          -- spawnOnce "nm-applet &"
-          -- spawnOnce "volumeicon &"
           -- spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x292d3e --height 22 &"
-          -- spawnOnce "/usr/bin/emacs --daemon &"
-          -- spawnOnce "kak -d -s mysession &"
-          -- setWMName "xmonad"
 
 myColorizer :: Window -> Bool -> X (String, String)
 myColorizer = colorRangeFromClassName
@@ -149,7 +141,8 @@ spawnSelected' lst = gridselect conf lst >>= flip whenJust spawn
 myAppGrid :: [(String, String)]
 myAppGrid = [ ("Youtube Music", "/usr/lib/chromium/chromium --memory-model=low --profile-directory=Default --app-id=cinhimbnkkaeohfgghhklpknlkffjgod")
                  , ("Chrome", "chromium --memory-model=low --enable-smooth-scrolling --enable-sync-extensions --enable-webgl --enable-print-preview")
-                 ]
+                 , ("Radicle Upstream", "appimage-run ~/apps/radicle.AppImage")
+            ]
 
 myScratchPads :: [NamedScratchpad]
 myScratchPads = [ NS "terminal" spawnTerm findTerm manageTerm

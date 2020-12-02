@@ -26,6 +26,7 @@ in
     xfce.thunar
     vscode
     pfetch
+    appimage-run
   ]) ++ (with pkgs.haskellPackages; [
     xmonad
     xmonad-contrib
