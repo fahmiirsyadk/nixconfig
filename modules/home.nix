@@ -1,7 +1,12 @@
 { config, lib, pkgs, ... }:
 let unstable = import <nixpkgs-unstable> { config.allowUnfree = true; };
+    picom = pkgs.picom.overrideAttrs (old: rec {
+    version = "git";
+    src = builtins.fetchurl "https://github.com/ibhagwan/picom/archive/next.tar.gz";
+  });
 in
 {
+  nixpkgs.config.allowUnfree = true;
   home.packages = (with pkgs; [
     unstable.discord
     unstable.android-studio
@@ -21,7 +26,6 @@ in
     vim
     neofetch
     pfetch
-    picom
     emacs
     xfce.thunar
     vscode
@@ -49,5 +53,13 @@ in
   };
   xsession.windowManager = {
     xmonad = (import desktop/xmonad/xmonad.nix);
+  };
+  home.file = {
+    ".xmonad/autostart.sh" = {
+      executable = true;
+      text = ''
+        ${picom}/bin/picom --config ${./desktop/picom/picom.conf} &
+      '';
+    };
   };
 }

@@ -78,6 +78,8 @@ in
     cabal2nix
     cabal-install
     ghc
+    cmake
+    libev
     # xmonad stuff
     xscreensaver
     xorg.xbacklight
@@ -134,10 +136,6 @@ in
     opengl.enable = true;
     opengl.driSupport = true;
     opengl.extraPackages = with pkgs; [
-      # vaapiIntel
-      # vaapiVdpau
-      # libvdpau-va-gl
-      # intel-media-driver
       intel-compute-runtime
     ];
     opengl.driSupport32Bit = true;

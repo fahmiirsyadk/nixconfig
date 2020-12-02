@@ -106,6 +106,8 @@ windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace
 
 myStartupHook :: X ()
 myStartupHook = do
+        spawnOnce "$HOME/.xmonad/autostart.sh"
+        spawnOnce "$HOME/.fehbg &"
         spawnOnce "xsetroot -cursor_name left_ptr"
           -- spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x292d3e --height 22 &"
 
