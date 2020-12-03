@@ -1,5 +1,8 @@
 {
   enable = true;
+  font = {
+    name = "Source Code Pro Nerd Font 13";
+  };
   settings = {
     allow_remote_control = true;
     scrollback_lines = 100000;
@@ -14,7 +17,7 @@
     active_border_color = "#928374";
 
     background_opacity = "0.89";
-    window_padding_width = 5;
+    window_padding_width = "0 15 15 15";
 
     # coloring
     # black

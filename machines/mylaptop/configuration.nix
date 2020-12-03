@@ -90,6 +90,8 @@ in
     pavucontrol
     home-manager
     php
+    python
+    python3
     php74Packages.composer2
   ]) ++ (with pkgs.php74Extensions; [
     bcmath ctype fileinfo json
@@ -136,10 +138,14 @@ in
     opengl.enable = true;
     opengl.driSupport = true;
     opengl.extraPackages = with pkgs; [
+      vaapiIntel
+      vaapiVdpau
+      libvdpau-va-gl
+      intel-media-driver
       intel-compute-runtime
     ];
     opengl.driSupport32Bit = true;
-    # cpu.intel.updateMicrocode = true;
+    cpu.intel.updateMicrocode = true;
   };
 
   services = {
