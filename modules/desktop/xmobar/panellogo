@@ -1,0 +1,16 @@
+Config { font    = "xft:Source Code Pro Nerd Font:weight=bold:pixelsize=12:antialias=true:hinting=true"
+       , additionalFonts = [ "xft:Mononoki Nerd Font:pixelsize=12:antialias=true:hinting=true"
+                           , "xft:Mononoki Nerd Font:pixelsize=16:antialias=true:hinting=true"
+                           , "xft:FontAwesome:pixelsize=13"
+                           ]
+       , fgColor = "#F47193"
+       , bgColor = "#040403"
+       , borderColor = "white"
+       , position = Static { xpos = 15 , ypos = 15, width = 64, height = 28 }
+       , lowerOnStart = True
+       , hideOnStart = False
+       , allDesktops = True
+       , persistent = True
+       , iconRoot = "/home/fahmiirsyadk/.nix-config/modules/desktop/xmonad/xpm/"  -- default: "."
+       , template = "  <action=`xdotool key control+alt+g`><icon=nix-22.xpm/> </action> "
+       }

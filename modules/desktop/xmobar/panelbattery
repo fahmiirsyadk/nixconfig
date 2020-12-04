@@ -1,0 +1,36 @@
+
+Config { font    = "xft:Source Code Pro Nerd Font:weight=bold:pixelsize=12:antialias=true:hinting=true"
+       , additionalFonts = [ "xft:Mononoki Nerd Font:pixelsize=12:antialias=true:hinting=true"
+                           , "xft:Mononoki Nerd Font:pixelsize=16:antialias=true:hinting=true"
+                           , "xft:FontAwesome:pixelsize=13"
+                           ]
+       ,fgColor = "#F47193"
+       -- , bgColor = "#020202"
+       , bgColor = "#040403"
+       , borderColor = "white"
+       , position = Static { xpos = 1564 , ypos = 15, width = 114, height = 28 }
+       , lowerOnStart = True
+       , hideOnStart = False
+       , allDesktops = True
+       , persistent = True
+       , commands = [
+                    Run Battery        [ "--template" , "<acstatus>"
+                             , "--Low"      , "10"        -- units: %
+                             , "--High"     , "80"        -- units: %
+                             , "--low"      , "#f47192"
+                             , "--normal"   , "#b3afc2"
+                             , "--high"     , "#b3afc2"
+
+                             , "--" -- battery specific options
+                                       -- discharging status
+                                       , "-o"	, "<fn=1>   </fn> <left>% (<timeleft>)"
+                                       -- AC "on" status
+                                       , "-O"	, "<fc=#b3afc2><fn=1>   </fn> Charging</fc>"
+                                       -- charged status
+                                       , "-i"	, "<fc=#b3afc2><fn=1>   </fn> Charged</fc>"
+                             ] 50
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = "  %battery%  "
+       }

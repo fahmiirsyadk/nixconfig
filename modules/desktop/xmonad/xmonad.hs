@@ -109,8 +109,9 @@ myStartupHook = do
         spawnOnce "$HOME/.xmonad/autostart.sh"
         spawnOnce "$HOME/.fehbg &"
         spawnOnce "xsetroot -cursor_name left_ptr"
-        spawnOnce "xmobar ~/.nix-config/modules/desktop/xmobar/panelright"
-          -- spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x292d3e --height 22 &"
+        spawnOnce "xmobar ~/.nix-config/modules/desktop/xmobar/panelright" 
+        spawnOnce "xmobar ~/.nix-config/modules/desktop/xmobar/panellogo"
+        spawnOnce "xmobar ~/.nix-config/modules/desktop/xmobar/panelbattery"
 
 myColorizer :: Window -> Bool -> X (String, String)
 myColorizer = colorRangeFromClassName

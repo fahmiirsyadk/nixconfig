@@ -87,8 +87,10 @@ in
     ripgrep
     fd
     # GUI
+    font-manager
     pavucontrol
     home-manager
+    # Lang
     php
     python
     python3

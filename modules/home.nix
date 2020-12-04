@@ -29,8 +29,11 @@ in
     emacs
     xfce.thunar
     vscode
-    pfetch
-    appimage-run
+    libnotify
+    dunst                           # notification daemon
+    pfetch                          # simpler neofetch
+    appimage-run                    # run AppImage
+    dijo                            # simple tracker
   ]) ++ (with pkgs.haskellPackages; [
     xmonad
     xmonad-contrib
@@ -53,6 +56,31 @@ in
   };
   xsession.windowManager = {
     xmonad = (import desktop/xmonad/xmonad.nix);
+  };
+  services = {
+    dunst = {
+      enable = true;
+      settings = {
+        global = {
+          geometry = "300x27-370+15";
+          alignment = "right";
+          font = "RobotoMonoNerdFontCompleteM-Bold 11";
+          padding = 5;
+          shrink = "yes";
+          horizontal_padding = 15;
+          sticky_history = "false";
+        };
+        urgency_normal = {
+          background = "#040403";
+          foreground = "#FFB86C";
+          timeout = 10;
+        };
+        urgency_critical = {
+          background = "#cc241d";
+          foreground = "#FFF";
+        };
+      };
+    };
   };
   home.file = {
     ".xmonad/autostart.sh" = {

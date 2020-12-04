@@ -7,7 +7,7 @@ Config { font    = "xft:Source Code Pro Nerd Font:weight=bold:pixelsize=12:antia
        -- , bgColor = "#020202"
        , bgColor = "#040403"
        , borderColor = "white"
-       , position = Static { xpos = 1640 , ypos = 15, width = 260, height = 28 }
+       , position = Static { xpos = 1686 , ypos = 15, width = 218, height = 28 }
        , lowerOnStart = True
        , hideOnStart = False
        , allDesktops = True
@@ -15,10 +15,9 @@ Config { font    = "xft:Source Code Pro Nerd Font:weight=bold:pixelsize=12:antia
        , commands = [
                       -- Time and date
                       Run Date "<fn=1>\xf133 </fn> %b %d (%H:%M)" "date" 50
-                    , Run Cpu ["-t", "<fn=1>\xf108 </fn> cpu: (<total>%)","-H","50","--high","red"] 20
                     , Run Com "/home/fahmiirsyadk/.nix-config/modules/desktop/xmobar/volume.sh" [] "volume" 5
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "}{  <fc=#FFB86C> %volume% </fc><fc=#666666> <fn=2>|</fn></fc> <fc=#8BE9FD> %date% </fc>  "
+       , template = "  <fc=#FFB86C> <fn=1> </fn> %volume% </fc><fc=#666666> <fn=2>|</fn></fc> <fc=#b3afc2> %date%</fc>"
        }
