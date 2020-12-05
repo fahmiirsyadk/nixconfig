@@ -8,7 +8,8 @@ in
 {
   nixpkgs.config.allowUnfree = true;
   home.packages = (with pkgs; [
-    unstable.discord
+    discord-canary
+    cordless
     unstable.android-studio
     gotop
     unstable.nix-prefetch-github
@@ -30,6 +31,9 @@ in
     xfce.thunar
     vscode
     libnotify
+    offlineimap
+    xclip
+    mu                              # mail client
     dunst                           # notification daemon
     pfetch                          # simpler neofetch
     appimage-run                    # run AppImage
@@ -53,6 +57,8 @@ in
       delta.enable = true;
     };
     feh.enable = true;
+    mu.enable = true;
+    offlineimap.enable = true;
   };
   xsession.windowManager = {
     xmonad = (import desktop/xmonad/xmonad.nix);
