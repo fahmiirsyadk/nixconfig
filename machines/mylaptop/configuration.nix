@@ -80,6 +80,8 @@ in
     ghc
     cmake
     libev
+    gcc
+    m4
     # xmonad stuff
     xscreensaver
     xorg.xbacklight
@@ -94,12 +96,25 @@ in
     php
     python
     python3
+    ocaml
     php74Packages.composer2
   ]) ++ (with pkgs.php74Extensions; [
     bcmath ctype fileinfo json
     mbstring openssl pdo tokenizer xml
   ]) ++ (with unstable; [
     nodejs
+  ]) ++ (with unstable.nodePackages; [
+    yarn
+    node2nix
+    bower
+    gulp
+  ]) ++ (with pkgs.ocamlPackages; [
+    core
+    core_extended
+    findlib
+    utop
+    merlin
+    ocp-indent
   ]);
 
   fonts.fonts = (with pkgs; [
@@ -144,7 +159,6 @@ in
       vaapiVdpau
       libvdpau-va-gl
       intel-media-driver
-      intel-compute-runtime
     ];
     opengl.driSupport32Bit = true;
     cpu.intel.updateMicrocode = true;

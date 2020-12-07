@@ -8,7 +8,7 @@ in
 {
   nixpkgs.config.allowUnfree = true;
   home.packages = (with pkgs; [
-    discord-canary
+    discord
     cordless
     unstable.android-studio
     gotop
@@ -30,9 +30,13 @@ in
     emacs
     xfce.thunar
     vscode
+    unrar
     libnotify
+    cava
+    kazam
     offlineimap
     xclip
+    simplescreenrecorder
     mu                              # mail client
     dunst                           # notification daemon
     pfetch                          # simpler neofetch
