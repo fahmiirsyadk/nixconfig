@@ -1,0 +1,12 @@
+Config {
+	font = "xft:Droid Sans Mono-10"
+	, additionalFonts = ["xft:FontAwesome-10"]
+	, borderWidth = 2
+	, bgColor = "#040403"
+	, fgColor = "#F47193"
+	, lowerOnStart = False
+	, position = Static { xpos = 1646 , ypos = 15, width = 258, height = 28 }
+	, template = "}<action=`systemctl poweroff`> Shutdown </action>    \
+				  \<action=`systemctl reboot`>Reboot</action>       \
+				  \<action=`pkill -f 'home/fahmiirsyadk/.nix-config/modules/desktop/xmobar/panelpopup'`>Exit</action>{"
+}

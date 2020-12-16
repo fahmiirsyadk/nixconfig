@@ -82,6 +82,7 @@ in
     libev
     gcc
     m4
+    ntfs3g
     # xmonad stuff
     xscreensaver
     xorg.xbacklight
@@ -108,6 +109,7 @@ in
     node2nix
     bower
     gulp
+    live-server
   ]) ++ (with pkgs.ocamlPackages; [
     core
     core_extended
