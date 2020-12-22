@@ -93,10 +93,10 @@ myBorderWidth :: Dimension
 myBorderWidth = 2          -- Sets border width for windows
 
 myNormColor :: String
-myNormColor   = "#292d3e"  -- Border color of normal windows
+myNormColor   = "#928374"  -- Border color of normal windows
 
 myFocusColor :: String
-myFocusColor  = "#bbc5ff"  -- Border color of focused windows
+myFocusColor  = "#d79921"  -- Border color of focused windows
 
 altMask :: KeyMask
 altMask = mod1Mask         -- Setting this for use in xprompts
@@ -146,6 +146,7 @@ myAppGrid :: [(String, String)]
 myAppGrid = [ ("Youtube Music", "/usr/lib/chromium/chromium --memory-model=low --profile-directory=Default --app-id=cinhimbnkkaeohfgghhklpknlkffjgod")
                  , ("Chrome", "chromium --memory-model=low --enable-smooth-scrolling --enable-sync-extensions --enable-webgl --enable-print-preview")
                  , ("Radicle Upstream", "appimage-run ~/apps/radicle.AppImage")
+                 , ("Scilab", "LD_LIBRARY_PATH=$(nix eval --raw nixpkgs.stdenv.cc.cc.lib)/lib:$(nix eval --raw nixpkgs.gtk2)/lib scilab")
             ]
 
 myScratchPads :: [NamedScratchpad]
@@ -217,10 +218,10 @@ tabs     = renamed [Replace "tabs"]
            $ tabbed shrinkText myTabConfig
   where
     myTabConfig = def { fontName            = "xft:Mononoki Nerd Font:regular:pixelsize=9"
-                      , activeColor         = "#292d3e"
+                      , activeColor         = "#d79921"
                       , inactiveColor       = "#3e445e"
-                      , activeBorderColor   = "#292d3e"
-                      , inactiveBorderColor = "#292d3e"
+                      , activeBorderColor   = "#d79921"
+                      , inactiveBorderColor = "#928374"
                       , activeTextColor     = "#ffffff"
                       , inactiveTextColor   = "#d0d0d0"
                       }

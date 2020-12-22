@@ -29,7 +29,12 @@ in
   # UNFREE PKGS
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.pulseaudio = true;
-
+    nixpkgs.overlays = [
+    (import (builtins.fetchTarball {
+      url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
+    }))
+    ];
+    
   # BOOT FASTER
   systemd.services = {
     systemd-udev-settle.enable = false;
@@ -89,6 +94,7 @@ in
     # emacs
     ripgrep
     fd
+    emacsGit
     # GUI
     font-manager
     pavucontrol

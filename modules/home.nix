@@ -27,7 +27,6 @@ in
     vim
     neofetch
     pfetch
-    emacs
     xfce.thunar
     vscode
     unrar
@@ -36,7 +35,9 @@ in
     kazam
     offlineimap
     xclip
+    zathura
     simplescreenrecorder
+    scilab-bin
     mu                              # mail client
     dunst                           # notification daemon
     pfetch                          # simpler neofetch
