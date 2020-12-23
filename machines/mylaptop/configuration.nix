@@ -5,6 +5,13 @@
 { config, pkgs, ... }:
 let
   unstable = import <nixpkgs-unstable> { config.allowUnfree = true; };
+  pkgsocaml = import (builtins.fetchGit {
+         # Descriptive name to make the store path easier to identify                
+         name = "my-old-revision";                                                 
+         url = "https://github.com/nixos/nixpkgs-channels/";                       
+         ref = "refs/heads/nixpkgs-unstable";                     
+         rev = "0cf6a5035932023c324bfda301b89190801c3f30";                                           
+  }) {};  
 in
 {
   imports =
@@ -94,6 +101,8 @@ in
     # emacs
     ripgrep
     fd
+    pkgsocaml.ocaml
+    pkgsocaml.ocamlPackages.merlin
     emacsGit
     # GUI
     font-manager
@@ -103,7 +112,6 @@ in
     php
     python
     python3
-    ocaml
     php74Packages.composer2
   ]) ++ (with pkgs.php74Extensions; [
     bcmath ctype fileinfo json
@@ -116,13 +124,6 @@ in
     bower
     gulp
     live-server
-  ]) ++ (with pkgs.ocamlPackages; [
-    core
-    core_extended
-    findlib
-    utop
-    merlin
-    ocp-indent
   ]);
 
   fonts.fonts = (with pkgs; [
