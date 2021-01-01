@@ -16,7 +16,6 @@
     background = "#282828";
     active_border_color = "#928374";
 
-    background_opacity = "0.89";
     window_padding_width = "0 15 15 15";
 
     # coloring
