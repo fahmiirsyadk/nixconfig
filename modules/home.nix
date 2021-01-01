@@ -35,9 +35,11 @@ in
     kazam
     offlineimap
     xclip
-    zathura
+    steam
     simplescreenrecorder
     scilab-bin
+    ncmpcpp
+    mpd
     mu                              # mail client
     dunst                           # notification daemon
     pfetch                          # simpler neofetch

@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ lib, config, pkgs, ... }:
 let
   unstable = import <nixpkgs-unstable> { config.allowUnfree = true; };
   pkgsocaml = import (builtins.fetchGit {
@@ -25,6 +25,12 @@ in
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = false;
   boot.loader.grub.useOSProber = true;
+
+  boot.kernel.sysctl = {
+    "vm.swappiness" = lib.mkDefault 1;
+  };
+
+  services.fstrim.enable = lib.mkDefault true;
   
   nix = {
     nixPath = [
@@ -101,8 +107,6 @@ in
     # emacs
     ripgrep
     fd
-    pkgsocaml.ocaml
-    pkgsocaml.ocamlPackages.merlin
     emacsGit
     # GUI
     font-manager
@@ -113,6 +117,9 @@ in
     python
     python3
     php74Packages.composer2
+  ]) ++ (with pkgsocaml; [
+    ocaml
+    ocamlPackages.merlin
   ]) ++ (with pkgs.php74Extensions; [
     bcmath ctype fileinfo json
     mbstring openssl pdo tokenizer xml
