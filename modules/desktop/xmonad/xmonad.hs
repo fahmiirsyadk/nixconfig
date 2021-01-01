@@ -143,7 +143,7 @@ spawnSelected' lst = gridselect conf lst >>= flip whenJust spawn
                    , gs_font         = myFont
                    }
 myAppGrid :: [(String, String)]
-myAppGrid = [ ("Youtube Music", "/usr/lib/chromium/chromium --memory-model=low --profile-directory=Default --app-id=cinhimbnkkaeohfgghhklpknlkffjgod")
+myAppGrid = [ ("Youtube Music", "chromium --profile-directory=Default --app-id=cinhimbnkkaeohfgghhklpknlkffjgod")
                  , ("Chrome", "chromium --memory-model=low --enable-smooth-scrolling --enable-sync-extensions --enable-webgl --enable-print-preview")
                  , ("Radicle Upstream", "appimage-run ~/apps/radicle.AppImage")
                  , ("Scilab", "LD_LIBRARY_PATH=$(nix eval --raw nixpkgs.stdenv.cc.cc.lib)/lib:$(nix eval --raw nixpkgs.gtk2)/lib scilab")
