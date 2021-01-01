@@ -3,7 +3,8 @@ let unstable = import <nixpkgs-unstable> { config.allowUnfree = true; };
     picom = pkgs.picom.overrideAttrs (old: rec {
     version = "git";
     src = builtins.fetchurl "https://github.com/ibhagwan/picom/archive/next.tar.gz";
-  });
+    });
+    secret = import "/home/fahmiirsyadk/.nix-config/modules/secret.nix";
 in
 {
   nixpkgs.config.allowUnfree = true;
@@ -60,8 +61,12 @@ in
     git = {
       enable = true;
       userName = "fahmiirsyadk";
-      userEmail = "fahmiirsyad10@gmail.com";
+      userEmail = secret.email;
       delta.enable = true;
+      signing = {
+        key = secret.key;
+        signByDefault = true;
+      };
     };
     feh.enable = true;
     mu.enable = true;
